@@ -1,0 +1,35 @@
+version: "3.3"
+  
+services:
+
+  core:
+    image: ${REGISTRY:-}${CORE_IMAGE:?Core image is not defined, ensure you run setEnv.sh}
+    hostname: core
+    domainname: compose-dx.test
+    environment:
+      - WAS_ADMIN=${WAS_ADMIN:-wpsadmin}
+      - WAS_PASSWORD=${WAS_PASSWORD:-wpsadmin}
+      - DX_ADMIN=${DX_ADMIN:-wpsadmin}
+      - DX_PASSWORD=${DX_PASSWROD:-wpsadmin}
+    ports:
+      # Web Port on HTTP + HTTPS
+      - "10039:10039"
+      - "10042:10042"
+      # WAS Console on HTTP + HTTPS
+      - "10038:10038"
+      - "10041:10041" 
+    volumes:
+      - ./core_profile/:/opt/HCL/wp_profile
+
+  ring-api:
+    image: ${REGISTRY:-}${RING_IMAGE:?Core image is not defined, ensure you run setEnv.sh}
+    hostname: ringapi
+    domainname: compose-dx.test
+    environment:
+      - PORTAL_HOST=core
+      - PORTAL_PORT=10039
+      - PORTAL_SSL_ENABLED=${PORTAL_SSL_ENABLED:-false}
+      - CORS_ORIGIN="http://localhost:3000, http://localhost:3001"
+    ports:
+      - "3000:3000"
+      - "3001:3001"
