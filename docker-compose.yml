@@ -5,7 +5,7 @@ services:
   core:
     image: ${REGISTRY:-}${CORE_IMAGE:?Core image is not defined, ensure you run setEnv.sh}
     hostname: core
-    domainname: compose-dx.test
+    domainname: ${DX_DOMAIN:-compose-dx.test}
     environment:
       - WAS_ADMIN=${WAS_ADMIN:-wpsadmin}
       - WAS_PASSWORD=${WAS_PASSWORD:-wpsadmin}
@@ -24,12 +24,11 @@ services:
   ring-api:
     image: ${REGISTRY:-}${RING_IMAGE:?Core image is not defined, ensure you run setEnv.sh}
     hostname: ringapi
-    domainname: compose-dx.test
+    domainname: ${DX_DOMAIN:-compose-dx.test}
     environment:
       - PORTAL_HOST=core
       - PORTAL_PORT=10039
       - PORTAL_SSL_ENABLED=${PORTAL_SSL_ENABLED:-false}
-      - CORS_ORIGIN="http://localhost:3000, http://localhost:3001"
+      - CORS_ORIGIN="http://localhost:3000"
     ports:
       - "3000:3000"
-      - "3001:3001"

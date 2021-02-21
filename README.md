@@ -2,10 +2,10 @@
 
 ## Preparation
 
-By default DX images run as dx_user/dx_groups.
+By default HCL DX images run as **dx_user** / **dx_users** .
 
-uid: 1000
-gid: 1001
+* uid: 1000
+* gid: 1001
 
 When creating volumes please ensure you set write rights accordingly.
 
@@ -22,6 +22,13 @@ A utility shortahand is (where gnu make is available)
 > make prepare
 
 ## Operating the took
+
+Before running docker compose you need to setup the environment. The following command does it for you:
+
+> . ./setEnv.sh
+
+It sources env_images.hs and env_my.sh in the shell context so that environment variables are set befor launcing docker.
+Not running the environment setup correctly will make startup fail.
 
 Check out "makefile" to see commands you can use for different tasks or just run "make <target>"
 
