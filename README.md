@@ -27,10 +27,10 @@ Before running docker compose you need to setup the environment. The following c
 
 > . ./setEnv.sh
 
-It sources env_images.hs and env_my.sh in the shell context so that environment variables are set befor launcing docker.
+It sources `env_images.sh` and `env_my.sh` in the shell context so that environment variables are set befor launching docker.
 Not running the environment setup correctly will make startup fail.
 
-Check out "makefile" to see commands you can use for different tasks or just run "make <target>"
+Check out the `makefile` file to see the commands you can use for different tasks or just run "make <target>"
 
 ## Access the server
 
@@ -44,6 +44,6 @@ When services are started you can access DX and Ring API as:
 * http://localhost:3000/dx/api/core/v1/graphql
 
 ### WebSphere Administrative Console
-* https://localhost:10041/ibm/console
+* http://localhost:10041/ibm/console
 
-Note: If not working try replacing localhost with the IP of your machine's network interface
+Note: If this is not working, try replacing localhost with the IP of your machine's network interface
