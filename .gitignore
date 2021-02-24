@@ -1,4 +1,3 @@
 core_profile/
 local/
-
-env_my.sh
+env_local.sh
