@@ -1,0 +1,24 @@
+{$DX_SITE_ADDRESS}
+
+tls internal {
+
+}
+
+file_server {
+	root   /srv
+	index  index.html
+    browse
+}
+
+reverse_proxy /dx/api/* ring-api:3000
+
+# WebSphere Application server serving
+
+reverse_proxy /wps/* https://core:10041 {
+
+    header_up +isHttps true
+    
+    transport http {
+        tls_insecure_skip_verify
+    }
+}

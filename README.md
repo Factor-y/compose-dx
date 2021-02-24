@@ -27,7 +27,7 @@ Before running docker compose you need to setup the environment. The following c
 
 > . ./setEnv.sh
 
-It sources env_images.hs and env_my.sh in the shell context so that environment variables are set befor launcing docker.
+It sources env_default.sh, env_local.sh (user created) and env_images.hs in the shell context so that environment variables are set befor launcing docker.
 Not running the environment setup correctly will make startup fail.
 
 Check out "makefile" to see commands you can use for different tasks or just run "make <target>"

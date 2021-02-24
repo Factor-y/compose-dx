@@ -12,7 +12,7 @@
 # Image names are defined in the env_images.sh script
 #
 
-#export REGISTRY="registry.mydomain.mytld/"
+# export REGISTRY="registry.mydomain.mytld/"
 
 # Default settings for security
 
@@ -20,3 +20,12 @@ export WAS_ADMIN=wpsadmin
 export WAS_PASSWORD=wpsadmin
 export DX_ADMIN=wpsadmin 
 export DX_PASSWORD=wpsadmin
+
+# Web server based on Caddy
+#
+# Default is "localhost"
+#
+# export DX_SITE_ADDRESS=<fqdn for my test webserver>
+#
+# eg.
+# export DX_SITE_ADDRESS=www.mydomain.com

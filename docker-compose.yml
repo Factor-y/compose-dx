@@ -3,7 +3,7 @@ version: "3.3"
 services:
 
   core:
-    image: ${REGISTRY:-}${CORE_IMAGE:?Core image is not defined, ensure you run setEnv.sh}
+    image: ${REGISTRY:-}${CORE_IMAGE:?Core image is not defined, ensure you run '. ./setEnv.sh'}
     hostname: core
     domainname: ${DX_DOMAIN:-compose-dx.test}
     environment:
@@ -23,7 +23,7 @@ services:
 
   ring-api:
     image: ${REGISTRY:-}${RING_IMAGE:?Core image is not defined, ensure you run setEnv.sh}
-    hostname: ringapi
+    hostname: ring-api
     domainname: ${DX_DOMAIN:-compose-dx.test}
     environment:
       - PORTAL_HOST=core
@@ -32,3 +32,19 @@ services:
       - CORS_ORIGIN="http://localhost:3000"
     ports:
       - "3000:3000"
+
+  webserver:
+    image: caddy:2-alpine
+    hostname: webserver
+    domainname: ${DX_DOMAIN:-compose-dx.test}
+    environment:
+      - DX_SITE_ADDRESS=${DX_SITE_ADDRESS:-localhost}
+    volumes:
+      - ./resources/caddy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./resources/caddy/html:/srv:ro
+      - ./local/caddy/data:/data
+      - ./local/caddy/config:/config
+
+    ports:
+      - "80:80"
+      - "443:443"
