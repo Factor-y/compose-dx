@@ -23,6 +23,13 @@ logs:
 down:
 	docker-compose down
 
+# Clean temporary files
+clean-temp:
+	-docker-compose down -v
+	rm -rf core_profile/wstemp
+	rm -rf core_profile/tranlog
+	rm -rf core_profile/temp
+
 # Clean target
 clean:
 	docker-compose down -v

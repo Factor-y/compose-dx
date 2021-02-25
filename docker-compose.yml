@@ -17,7 +17,9 @@ services:
       - "10042:10042"
       # WAS Console on HTTP + HTTPS
       - "10038:10038"
-      - "10041:10041" 
+      - "10041:10041"
+      # SOAP port for remote wsadmin
+      - "10033:10033"
     volumes:
       - ./core_profile/:/opt/HCL/wp_profile
 

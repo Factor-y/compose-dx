@@ -1,3 +1,6 @@
 core_profile/
 local/
 env_local.sh
+
+# vscode
+.history
